@@ -53,7 +53,7 @@ exports.registerUser = async (req, res) => {
             await db.query(
                 `INSERT INTO users (full_name, university_id, college, department, year_of_study, gender, phone_number, email, residence, dorm_block, membership_type, committees, reason_for_joining, password) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-                [full_name, university_id, college, department, year_of_study, gender, phone_number, email, residence, dorm_block, membership_type, committees, reason_for_joining, hashedPassword]
+                [full_name, university_id, college, department, year_of_study, gender, phone_number, email, residence, dorm_block || null, membership_type, committees || null, reason_for_joining || null, hashedPassword]
             );
 
             req.flash('success_msg', 'You are now registered and can log in after admin approval.');
