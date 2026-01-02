@@ -7,15 +7,16 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 
 async function initDatabase() {
     try {
-        // Connect to MySQL server (without database)
+        // Connect to MySQL server
         const connection = await mysql.createConnection({
             host: process.env.DB_HOST || 'localhost',
             user: process.env.DB_USER || 'root',
             password: process.env.DB_PASSWORD || '',
-            multipleStatements: true // Enable multiple statements
+            database: process.env.DB_NAME || 'antidrug_club_db',
+            multipleStatements: true
         });
 
-        console.log('Connected to MySQL server.');
+        console.log('Connected to MySQL database.');
 
         // Read SQL file
         const sqlPath = path.join(__dirname, '../database.sql');
